@@ -1,0 +1,13 @@
+For PlatformIO with ESP and Arduino
+ALT + SHIFT + F     Autoformatting
+ALT + SHIFT + A     Un-/Comment Area
+CTRL + #            Un-/Comment Line
+CTRL + d            Multi-Cursor next selection
+CTRL + SHIFT + L    Multi-Cursor all selection
+CTRL + ALT + U      Upload to device
+CTRL + ALT + B    Build project
+
+
+
+
+

@@ -1,18 +1,20 @@
+#ifndef myWIFI
+
 #define myWIFI
 
 #include <ESP8266WiFi.h>
 // #include <ESP8266mDNS.h>
-
+#include <myGENERAL.h>
 // Needed Informations for the WIFI network
 // const char* _WIFI_SSID = "SSID";
 // const char* _WIFI_Password = "PASSWORD";
 
 /************ Global State (you don't need to change this!) ******************/
-#ifndef WIFIClientSecure
-#define WIFIClientSecure
+// #ifndef WIFIClientSecure
+// #define WIFIClientSecure
 // WiFiClientSecure for SSL/TLS support
-WiFiClientSecure _VAR_WIFIClientSecure;
-#endif
+WiFiClientSecure _WiFiClientSecure;
+// #endif
 
 uint8_t FUNC_rssiToPercentage(int32_t _VARL_rssi) // Convert the WIFI rssi to a percentage
 {
@@ -76,7 +78,7 @@ void FUNC_WIFI_Setup()
       FUNC_SoftwareReset();
     }
 #ifdef myMQTT
-    _VAR_WIFIClientSecure.setFingerprint(_fingerprint);
+    _WiFiClientSecure.setFingerprint(_fingerprint);
 #endif
   }
 
@@ -85,4 +87,4 @@ void FUNC_WIFI_Setup()
 #endif
 }
 
-
+#endif

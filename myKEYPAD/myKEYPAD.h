@@ -1,3 +1,5 @@
+#ifndef myKEYPAD
+
 #define myKEYPAD
 
 #include <Keypad.h>
@@ -16,3 +18,6 @@ byte _rowPins[_ROWS] = {D4, D3, D2};    // column pinouts of the keypad C1 = D4,
 Keypad _keypad = Keypad( makeKeymap(_keys), _rowPins, _colPins, _ROWS, _COLS );
 // const String _CONST_Code = "4321"; // The Master-Code
 String _VAR_Code = ""; // Temporary Variable for the code inputs, after timeout, it will be deleted
+
+#endif
+

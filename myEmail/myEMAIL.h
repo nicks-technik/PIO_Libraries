@@ -152,12 +152,7 @@ byte FUNC_sendEmail(String _VARL_EmailText)
   // change to your address
   // _WiFiClientSecure.println(F("From: test@gmail.com"));
   // _WiFiClientSecure.println(_From);
-  _WiFiClientSecure.println(F("Subject: Your Arduino\r\n"));
-  _WiFiClientSecure.println(F("This email was sent securely via an encrypted mail link.\n"));
-  _WiFiClientSecure.println(F("In the last hour there was: 8 activities detected. Please check all is well."));
-  _WiFiClientSecure.println(F("This email will NOT be repeated for this hour.\n"));
-  _WiFiClientSecure.println(F("This email was sent from an unmonitored email account - please do not reply."));
-  _WiFiClientSecure.println(F("Love and kisses from Dougle and Benny. They wrote this sketch."));
+  _WiFiClientSecure.println(_VAR_EmailText);
 
   // IMPORTANT you must send a complete line containing just a "." to end the conversation
   // So the PREVIOUS line to this one must be a prinln not just a print

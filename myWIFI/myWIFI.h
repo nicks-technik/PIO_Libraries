@@ -9,6 +9,15 @@
 // const char* _WIFI_SSID = "SSID";
 // const char* _WIFI_Password = "PASSWORD";
 
+// // Set your Static IP address
+// IPAddress local_IP(192, 168, 1, 184);
+// // Set your Gateway IP address
+// IPAddress gateway(192, 168, 1, 1);
+
+// IPAddress subnet(255, 255, 0, 0);
+// IPAddress primaryDNS(8, 8, 8, 8);   //optional
+// IPAddress secondaryDNS(8, 8, 4, 4); //optional
+
 /************ Global State (you don't need to change this!) ******************/
 // #ifndef WIFIClientSecure
 // #define WIFIClientSecure
@@ -37,7 +46,7 @@ uint8_t FUNC_rssiToPercentage(int32_t _VARL_rssi) // Convert the WIFI rssi to a 
 }
 
 void FUNC_PrintWifiStatus() // Wifi Status Ouput to Serial
-{ // print the SSID of the network you're attached to:
+{                           // print the SSID of the network you're attached to:
   Serial.print("SSID: ");
   Serial.println(WiFi.SSID());
 
@@ -57,6 +66,15 @@ void FUNC_PrintWifiStatus() // Wifi Status Ouput to Serial
 /************ Setup of the Wifi in the normal Setup-Function **************/
 void FUNC_WIFI_Setup()
 {
+
+#ifdef STATIC_IP
+  // Configures static IP address
+  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS))
+  {
+    Serial.println("STA Failed to configure");
+  }
+#endif
+
   WiFi.mode(WIFI_STA);
   WiFi.begin(_WIFI_SSID, _WIFI_Password);
 

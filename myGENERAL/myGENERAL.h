@@ -1,5 +1,53 @@
+#ifdef _SMARTDEBUG
+//TODO Change for my use case
+  // Hilfsfunktion für WAIT - Makro
+  void DebugWait(String txt) {
+    // buffer leeren
+    char ch;
+    while (Serial.available()) ch = Serial.read();
+    ch = 0;
+  
+    Serial.print(txt);
+    Serial.println(" >press 'c' to continue..."); 
+
+    // auf 'c' warten
+    do {
+      if (Serial.available() > 0) ch = Serial.read();
+    } while (ch != 'c'); 
+    // buffer leeren
+    while (Serial.available()) ch = Serial.read();
+  }  
+
+  // Initialisierung
+  #define DEBUG_INIT(speed) Serial.begin(speed)
+
+  // Textausgabe
+  #define DEBUG_PRINT(txt) Serial.print(txt)
+  #define DEBUG_PRINTLN(txt) Serial.println(txt)
+  #define DEBUG_PRINT_VALUE(txt, val) Serial.print(txt); Serial.print(": "); Serial.print(val)
+  #define DEBUG_PRINTLN_VALUE(txt, val) Serial.print(txt); Serial.print(": "); Serial.println(val)
+  #define DEBUG_PRINTLN_EMPTY() Serial.println()
+  
+  // andere Befehle
+  #define DEBUG_DELAY(ms) delay(ms)
+  #define DEBUG_WAIT(txt, condition) if (condition) DebugWait(txt)
+#else
+  // Leere Makro - Rümpfe, für den Fall, dass kein Debugging erwünscht ist
+  #define DEBUG_INIT(speed)
+  #define DEBUG_PRINT(txt)
+  #define DEBUG_PRINTLN(txt)
+  #define DEBUG_PRINT_VALUE(txt, val)
+  #define DEBUG_PRINTLN_VALUE(txt, val)
+  #define DEBUG_PRINTLN_EMPTY()
+  #define DEBUG_DELAY(ms)
+  #define DEBUG_WAIT(txt, condition)
+#endif
+
+
+
 #ifndef myGENERAL
 #define myGENERAL
+
 
 #ifndef def_FUNC_SoftwareReset
 #define def_FUNC_SoftwareReset
